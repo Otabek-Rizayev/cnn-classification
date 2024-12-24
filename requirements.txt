@@ -1,5 +1,2 @@
-streamlit
 fastai
 plotly
-platform
-pathlib
