@@ -16,13 +16,16 @@ if file:
   st.image(file)
   img = PILImage.create(file)
   # modelni yuklash
-  cnn_model = load_learner("cnn-classification-model.pkl")
+  model = load_learner("cnn-classification-model.pkl")
   # prediction (bashorat)
-  pred, pred_id, probs = cnn_model.predict(img)
-  st.success(f"Bashorat:  {pred}")
-  st.info(f"Ehtimollik: {probs[pred_id]*100:.1f}%")
-  
-  # plotting (grafik)
-  fig = px.bar(x=probs*100, y=cnn_model.dls.vocab)
-  st.plotly_chart(fig)
+  pred, pred_id, probs = model.predict(img)
+  if probs[pred_id] < 90:
+    st.success(f"Topdim! Bu:  {pred}")
+    st.info(f"<{pred}> bo'lish Ehtimolligi: {probs[pred_id]*100:.1f}%")
+    
+    # plotting (grafik)
+    fig = px.bar(x=probs*100, y=model.dls.vocab)
+    st.plotly_chart(fig)
+  else:
+    st.info(f"Siz boshqa rasm kiritdingiz!\n Iltimos, bulardan birini kiritganingizga ishonch hosil qiling: Worm(Chuvalchang), Dragonfly(Ninachi), Caterpillar(Qurt), Butterfly(Kapalak)")
   
