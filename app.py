@@ -19,7 +19,7 @@ if file:
   model = load_learner("cnn-classification-model.pkl")
   # prediction (bashorat)
   pred, pred_id, probs = model.predict(img)
-  if round(probs[pred_id]) < 90:
+  if int(probs[pred_id]*100) < 90:
     st.success(f"Topdim! Bu:  {pred}")
     st.info(f"<{pred}> bo'lish Ehtimolligi: {probs[pred_id]*100:.1f}%")
     
