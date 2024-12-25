@@ -16,13 +16,13 @@ if file:
   st.image(file)
   img = PILImage.create(file)
   # modelni yuklash
-  model = load_learner("cnn-classification-model.pkl")
+  cnn_model = load_learner("cnn-classification-model.pkl")
 
 # prediction (bashorat)
-pred, pred_id, probs = model.predict(img)
+pred, pred_id, probs = cnn_model.predict(img)
 st.success(f"Bashorat:  {pred}")
 st.info(f"Ehtimollik: {probs[pred_id]*100:.1f}%")
 
 # plotting (grafik)
-fig = px.bar(x=probs*100, y=model.dls.vocab)
+fig = px.bar(x=probs*100, y=cnn_model.dls.vocab)
 st.plotly_chart(fig)
