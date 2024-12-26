@@ -29,4 +29,4 @@ if file:
     st.plotly_chart(fig)
   else:
     st.info(f"Siz boshqa rasm kiritdingiz!\n Iltimos, bulardan birini kiritganingizga ishonch hosil qiling: Worm(Chuvalchang), Dragonfly(Ninachi), Caterpillar(Qurt), Butterfly(Kapalak)")
-    st.info(f"<{pred}> bo'lish Ehtimolligi:  {probs[pred_id]*100:.1f}%")
+    st.info(f"Ehtimollik:  {probs[pred_id]*100:.1f}%")
