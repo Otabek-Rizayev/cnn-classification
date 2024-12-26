@@ -3,6 +3,7 @@ from fastai.vision.all import *
 import plotly.express as px
 import platform
 import pathlib
+import math
 
 plt = platform.system()
 if plt == 'Linux': pathlib.WindowsPath = pathlib.PosixPath
@@ -19,9 +20,9 @@ if file:
   model = load_learner("cnn-classification-model.pkl")
   # prediction (bashorat)
   pred, pred_id, probs = model.predict(img)
-  if int(probs[pred_id])*100 < 90:
+  if int(math.sqrt(probs[pred_id])) > 90:
     st.success(f"Topdim! Bu:  {pred}")
-    st.info(f"<{pred}> bo'lish Ehtimolligi fhh: {probs[pred_id]*100}%")
+    st.info(f"<{pred}> bo'lish Ehtimolligi: {probs[pred_id]*100}%")
     
     # plotting (grafik)
     fig = px.bar(x=probs*100, y=model.dls.vocab)
