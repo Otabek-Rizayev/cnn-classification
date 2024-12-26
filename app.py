@@ -22,7 +22,7 @@ if file:
   pred, pred_id, probs = model.predict(img)
   if int(probs[pred_id]*100) > 70:
     st.success(f"Topdim! Bu:  {pred}")
-    st.info(f"<{pred}> bo'lish Ehtimolligi: {int(probs[pred_id])}%")
+    st.info(f"<{pred}> bo'lish Ehtimolligi: {int(probs[pred_id]*100)}%")
     
     # plotting (grafik)
     fig = px.bar(x=probs*100, y=model.dls.vocab)
