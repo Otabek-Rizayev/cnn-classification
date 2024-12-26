@@ -21,8 +21,8 @@ if file:
   # prediction (bashorat)
   pred, pred_id, probs = model.predict(img)
   if probs[pred_id]*100 > 90:
-    st.success(f"Topdim! Bu:  {pred}")
-    st.info(f"<{pred}> bo'lish Ehtimolligi: {probs[pred_id]*100:.1f}%")
+    st.success(f"Topdim! Bu:   {pred}")
+    st.info(f"<{pred}> bo'lish Ehtimolligi:  {probs[pred_id]*100:.1f}%")
     
     # plotting (grafik)
     fig = px.bar(x=probs*100, y=model.dls.vocab)
